@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="utf-8">
-  <title>Entry Page</title>
+  <title>Strona główna</title>
 </head>
 <body>
 <form action="process" method="post">
@@ -21,19 +21,13 @@
   <label for="category">Maksymalna cena (1-4): </label>
   <input type="text" id="max_price" name="max_price"><br>
 
-<!--  <label for="Longitude">Długość geograficzna: </label>-->
-<!--  <input type="text" id="longitude" name="longitude"><br>-->
-
-<!--  <label for="Latitude">Szerokość geograficzna: </label>-->
-<!--  <input type="text" id="latitude" name="latitude"><br>-->
-
-  <label for="Latitude">Adres: (docelowo wywalamy długość + szerokość, zostawiamy adres)</label>
+  <label for="address">Adres: (docelowo wywalamy długość + szerokość, zostawiamy adres)</label>
   <input type="text" id="address" name="address"><br>
 
-  <label for="Latitude">Odległość od zadanego punktu: (domyślnie 1km) </label>
+  <label for="distance">Odległość od zadanego punktu [w metrach]: (domyślnie 1000) </label>
   <input type="text" id="distance" name="distance"><br>
 
-  <label for="Latitude">Liczba wyników (domyślnie 10): </label>
+  <label for="results_cnt">Liczba wyników (domyślnie 20): </label>
   <input type="text" id="results_cnt" name="results_cnt"><br>
 
   <input type="submit" value="Wyślij">

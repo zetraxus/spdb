@@ -5,18 +5,27 @@ class SQLQuery:
         self.latitude = request.form.get('latitude')
         self.rev_cnt = request.form.get('rev_cnt')
         self.min_rating = request.form.get('min_rating')
-        self.min_price = int(request.form.get('min_price'))
-        self.max_price = int(request.form.get('max_price'))
+        self.min_price = request.form.get('min_price')
+        self.max_price = request.form.get('max_price')
         self.address = request.form.get('address')
         self.distance = request.form.get('distance')
         self.results_cnt = request.form.get('results_cnt')
+
+        if self.distance:
+            self.distance = int(self.distance)
+        else:
+            self.distance = 1000
+
+        if self.results_cnt:
+            self.results_cnt = int(self.results_cnt)
+        else:
+            self.results_cnt = 20
 
     def build_sql_query(self):
         conditions = []
         if self.category:
             cond = "main_category in ("
             for cat in [x.strip() for x in self.category.split(',')]:
-                print(cat)
                 cond += '\'' + cat + '\','
             cond = cond[:-1] + ')'
             conditions.append(cond)
@@ -26,13 +35,13 @@ class SQLQuery:
             conditions.append("rating > " + self.min_rating)
         if self.min_price:
             cond = "(price = ' ' or price >= '"
-            for i in range(self.min_price):
+            for i in range(len(self.min_price)):
                 cond += "$"
             cond += '\')'
             conditions.append(cond)
         if self.max_price:
             cond = "(price = ' ' or price <= '"
-            for i in range(self.max_price):
+            for i in range(len(self.max_price)):
                 cond += "$"
             cond += '\')'
             conditions.append(cond)
