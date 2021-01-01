@@ -29,9 +29,7 @@ def process():
         results = filter_results(results, coords, query_builder.distance)
 
     if query_builder.order:
-        if query_builder.order == 'distance' and not query_builder.address:
-            pass
-        else:
+        if not (query_builder.order == 'distance' and not query_builder.address):
             results = sort_results(results, query_builder.order)
 
     results = results[:query_builder.results_cnt]
