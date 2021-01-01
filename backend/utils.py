@@ -18,5 +18,15 @@ def filter_results(query_results, coords, distance):
         meta = str(result[8]) + ',' + str(result[7])
         data = requests.get(URL_high_acc + start + ';' + meta).json()
         if data['routes'][0]['distance'] < distance:
-            nearby_results.append(result)
+            result_with_dist = result + (data['routes'][0]['distance'],)
+            nearby_results.append(result_with_dist)
     return nearby_results
+
+
+def sort_results(results, order):
+    if order == 'price':
+        return sorted(results, key=lambda x: x[9])
+    if order == 'rating':
+        return sorted(results, key=lambda x: -x[6])
+    if order == 'distance':
+        return sorted(results, key=lambda x: x[20])

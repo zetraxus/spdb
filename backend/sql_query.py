@@ -10,6 +10,7 @@ class SQLQuery:
         self.address = request.form.get('address')
         self.distance = request.form.get('distance')
         self.results_cnt = request.form.get('results_cnt')
+        self.order = request.form.get('order')
 
         if self.distance:
             self.distance = int(self.distance)
