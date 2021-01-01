@@ -1,0 +1,47 @@
+class SQLQuery:
+    def __init__(self, request):
+        self.category = request.form.get('category')
+        self.longitude = request.form.get('longitude')
+        self.latitude = request.form.get('latitude')
+        self.rev_cnt = request.form.get('rev_cnt')
+        self.min_rating = request.form.get('min_rating')
+        self.min_price = int(request.form.get('min_price'))
+        self.max_price = int(request.form.get('max_price'))
+        self.address = request.form.get('address')
+        self.distance = request.form.get('distance')
+        self.results_cnt = request.form.get('results_cnt')
+
+    def build_sql_query(self):
+        conditions = []
+        if self.category:
+            cond = "main_category in ("
+            for cat in [x.strip() for x in self.category.split(',')]:
+                print(cat)
+                cond += '\'' + cat + '\','
+            cond = cond[:-1] + ')'
+            conditions.append(cond)
+        if self.rev_cnt:
+            conditions.append("review_count > " + self.rev_cnt)
+        if self.min_rating:
+            conditions.append("rating > " + self.min_rating)
+        if self.min_price:
+            cond = "(price = ' ' or price >= '"
+            for i in range(self.min_price):
+                cond += "$"
+            cond += '\')'
+            conditions.append(cond)
+        if self.max_price:
+            cond = "(price = ' ' or price <= '"
+            for i in range(self.max_price):
+                cond += "$"
+            cond += '\')'
+            conditions.append(cond)
+
+        query = "select * from restaurants_test"
+        if conditions:
+            query += " where "
+            for cond in conditions:
+                query += cond + " and "
+            query = query[:-5]
+        query += ';'
+        return query
