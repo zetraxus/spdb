@@ -2,7 +2,7 @@ import mysql.connector as mysql
 from flask import Flask, render_template, request
 
 from backend.config import host, user, passwd, database
-from backend.utils import search_for_coords, filter_results
+from backend.utils import search_for_coords, filter_results, calc_popularity
 from backend.sql_query import SQLQuery
 from backend.utils import sort_results
 
@@ -33,7 +33,16 @@ def process():
             results = sort_results(results, query_builder.order)
 
     results = results[:query_builder.results_cnt]
-    return render_template('response.html', results=results)
+    if query_builder.order != 'popularność':
+        calc_popularity(results)
+
+    for i in range(len(results)):
+        results[i] += (i + 1,)
+
+    if query_builder.address:
+        return render_template('response_with_dist.html', results=results)
+    else:
+        return render_template('response_base.html', results=results)
 
 
 if __name__ == '__main__':

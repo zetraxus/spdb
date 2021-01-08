@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Wyniki</title>
+</head>
+<body>
+<form action="/" method="post">
+    <table>
+        <tr>
+            <th>Lp.</th>
+            <th>Nazwa</th>
+            <th>Popularność</th>
+            <th>Kategoria</th>
+            <th>Średnia ocena</th>
+            <th>Cena (1-4)</th>
+            <th>Adres</th>
+        </tr>
+        {% for row in results %}
+        <tr>
+            <th>{{ row[21] }}</th>
+            <th>{{ row[1] }}</th>
+            <th>{{ row[20] }}</th>
+            <th>{{ row[5] }}</th>
+            <th>{{ row[6] }}</th>
+            <th>{{ row[9] }}</th>
+            <th>{{ row[10] }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" value="Powrót">
+</form>
+</body>
+</html>
