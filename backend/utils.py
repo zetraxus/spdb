@@ -1,6 +1,7 @@
 import math
-
 import requests
+import mysql.connector as mysql
+from backend.config import host, user, passwd, database
 
 
 def search_for_coords(address):
@@ -31,6 +32,7 @@ def calc_popularity(results):
     max_rev_cnt = max_rev_cnt[4]
     for i in range(len(results)):
         results[i] += (math.ceil(10 * results[i][4] / max_rev_cnt),)
+    return results
 
 
 def sort_results(results, order):
@@ -43,3 +45,32 @@ def sort_results(results, order):
     if order == 'popularność':
         calc_popularity(results)
         return sorted(results, key=lambda x: -x[-1])
+
+
+def db_query(query_builder):
+    db = mysql.connect(host=host, user=user, passwd=passwd, database=database)
+    query = query_builder.build_sql_query()
+    cursor = db.cursor()
+    cursor.execute(query)
+    results = cursor.fetchall()
+    return results
+
+
+def filter_address(query_builder, results):
+    if query_builder.address:
+        coords = search_for_coords(query_builder.address)
+        return filter_results(results, coords, query_builder.distance)
+    return results
+
+
+def order(query_builder, results):
+    if query_builder.order:
+        if not (query_builder.order == 'distance' and not query_builder.address):
+            return sort_results(results, query_builder.order)[:query_builder.results_cnt]
+    return results[:query_builder.results_cnt]
+
+
+def add_lp(results):
+    for i in range(len(results)):
+        results[i] += (i + 1,)
+    return results
