@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <title>Strona główna</title>
+</head>
+<body>
+<form action="process" method="post">
+  <label for="category">Kategoria główna: </label>
+  <input type="text" id="category" name="category"><br>
+
+  <label for="category">Minimalna liczba ocen: </label>
+  <input type="text" id="rev_cnt" name="rev_cnt"><br>
+
+  <label for="category">Minimalna ocena: </label>
+  <input type="text" id="min_rating" name="min_rating"><br>
+
+  <label for="category">Minimalna cena (1-4): </label>
+  <input type="text" id="min_price" name="min_price"><br>
+
+  <label for="category">Maksymalna cena (1-4): </label>
+  <input type="text" id="max_price" name="max_price"><br>
+
+  <label for="address">Adres: </label>
+  <input type="text" id="address" name="address"><br>
+
+  <label for="distance">Odległość od zadanego punktu [w metrach]: (domyślnie 1000) </label>
+  <input type="text" id="distance" name="distance"><br>
+
+  <label for="results_cnt">Liczba wyników (domyślnie 20): </label>
+  <input type="text" id="results_cnt" name="results_cnt"><br>
+
+  <label for="order">Sortowanie: (ocena, cena, odległość, popularność)</label>
+  <input type="text" id="order" name="order"><br>
+
+  <input type="submit" value="Wyślij">
+</form>
+</body>
+</html>
