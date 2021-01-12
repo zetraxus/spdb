@@ -30,8 +30,13 @@
   <label for="results_cnt">Liczba wyników (domyślnie 20): </label>
   <input type="text" id="results_cnt" name="results_cnt"><br>
 
-  <label for="order">Sortowanie: (ocena, cena, odległość, popularność)</label>
-  <input type="text" id="order" name="order"><br>
+  <label for="order">Sortowanie:</label>
+  <select name="order" id="order">
+    <option value="rating">Ocena</option>
+    <option value="price">Cena</option>
+    <option value="distance">Odległość</option>
+    <option value="popularity">Popularność</option><br>
+  </select>
 
   <input type="submit" value="Wyślij">
 </form>

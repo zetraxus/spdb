@@ -36,13 +36,13 @@ def calc_popularity(results):
 
 
 def sort_results(results, order):
-    if order == 'cena':
+    if order == 'price':
         return sorted(results, key=lambda x: x[9])
-    if order == 'ocena':
+    if order == 'rating':
         return sorted(results, key=lambda x: -x[6])
-    if order == 'odległość':
+    if order == 'distance':
         return sorted(results, key=lambda x: x[20])
-    if order == 'popularność':
+    if order == 'popularity':
         calc_popularity(results)
         return sorted(results, key=lambda x: -x[-1])
 
