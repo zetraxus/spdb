@@ -14,6 +14,8 @@ def main():
 def process():
     query_builder = SQLQuery(request)
     results = db_query(query_builder)
+    if len(results) == 0:
+        return render_template('empty_results_list.html')
     results = filter_address(query_builder, results)
     results = order(query_builder, results)
     results = calc_popularity(results)

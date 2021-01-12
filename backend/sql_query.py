@@ -31,9 +31,9 @@ class SQLQuery:
             cond = cond[:-1] + ')'
             conditions.append(cond)
         if self.rev_cnt:
-            conditions.append("review_count > " + self.rev_cnt)
+            conditions.append("review_count >= " + self.rev_cnt)
         if self.min_rating:
-            conditions.append("rating > " + self.min_rating)
+            conditions.append("rating >= " + self.min_rating)
         if self.min_price:
             cond = "(price = ' ' or price >= '"
             for i in range(len(self.min_price)):
