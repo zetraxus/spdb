@@ -6,39 +6,53 @@
 </head>
 <body>
 <form action="process" method="post">
-  <label for="category">Kategoria główna: </label>
-  <input type="text" id="category" name="category"><br>
-
-  <label for="category">Minimalna liczba ocen: </label>
-  <input type="text" id="rev_cnt" name="rev_cnt"><br>
-
-  <label for="category">Minimalna ocena: </label>
-  <input type="text" id="min_rating" name="min_rating"><br>
-
-  <label for="category">Minimalna cena (1-4): </label>
-  <input type="text" id="min_price" name="min_price"><br>
-
-  <label for="category">Maksymalna cena (1-4): </label>
-  <input type="text" id="max_price" name="max_price"><br>
-
-  <label for="address">Adres: </label>
-  <input type="text" id="address" name="address"><br>
-
-  <label for="distance">Odległość od zadanego punktu [w metrach]: (domyślnie 1000) </label>
-  <input type="text" id="distance" name="distance"><br>
-
-  <label for="results_cnt">Liczba wyników (domyślnie 20): </label>
-  <input type="text" id="results_cnt" name="results_cnt"><br>
-
-  <label for="order">Sortowanie:</label>
-  <select name="order" id="order">
-    <option value="rating">Ocena</option>
-    <option value="price">Cena</option>
-    <option value="distance">Odległość</option>
-    <option value="popularity">Popularność</option><br>
-  </select>
-
-  <input type="submit" value="Wyślij">
+   <table class="styled-table">
+     <tr>
+       <th><label for="category">Kategoria główna: </label></th>
+       <th><input type="text" id="category" name="category"><br></th>
+     </tr>
+     <tr>
+       <th><label for="category">Minimalna liczba ocen: </label></th>
+       <th><input type="text" id="rev_cnt" name="rev_cnt"><br></th>
+     </tr>
+     <tr>
+       <th><label for="category">Minimalna ocena: </label></th>
+       <th><input type="text" id="min_rating" name="min_rating"><br></th>
+     </tr>
+     <tr>
+       <th><label for="category">Minimalna cena (1-4): </label></th>
+       <th><input type="text" id="min_price" name="min_price"><br></th>
+     </tr>
+     <tr>
+       <th><label for="category">Maksymalna cena (1-4): </label></th>
+       <th><input type="text" id="max_price" name="max_price"><br></th>
+     </tr>
+     <tr>
+       <th><label for="address">Adres: </label></th>
+       <th><input type="text" id="address" name="address"><br></th>
+     </tr>
+     <tr>
+       <th><label for="distance">Maksymalna odległość [m]:</label></th>
+       <th><input type="text" id="distance" name="distance"><br></th>
+     </tr>
+     <tr>
+       <th><label for="results_cnt">Liczba wyników: </label></th>
+       <th><input type="text" id="results_cnt" name="results_cnt"><br></th>
+     </tr>
+     <tr>
+       <th><label for="order">Sortowanie:</label></th>
+       <th>
+         <select name="order" id="order">
+           <option value="rating">Ocena</option>
+           <option value="price">Cena</option>
+           <option value="distance">Odległość</option>
+           <option value="popularity">Popularność</option><br>
+         </select></th>
+     </tr>
+     <tr>
+       <th><input type="submit" value="Wyślij"></th>
+     </tr>
+   </table>
 </form>
 </body>
 </html>

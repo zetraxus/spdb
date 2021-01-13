@@ -13,13 +13,14 @@ def main():
 @app.route('/process', methods=['POST'])
 def process():
     query_builder = SQLQuery(request)
-    results = db_query(query_builder)
-    if len(results) == 0:
-        return render_template('empty_results_list.html')
-    results = filter_address(query_builder, results)
-    results = order(query_builder, results)
-    results = calc_popularity(results)
-    results = add_lp(results)
+    try:
+        results = db_query(query_builder)
+        results = filter_address(query_builder, results)
+        results = order(query_builder, results)
+        results = calc_popularity(results)
+        results = add_lp(results)
+    except:
+        return render_template('response_empty_results_list.html')
 
     if query_builder.address:
         return render_template('response_with_dist.html', results=results)
