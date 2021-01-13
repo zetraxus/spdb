@@ -1,3 +1,6 @@
+from backend.categories_dict import categories
+
+
 class SQLQuery:
     def __init__(self, request):
         self.category = request.form.get('category')
@@ -27,7 +30,9 @@ class SQLQuery:
         if self.category:
             cond = "main_category in ("
             for cat in [x.strip() for x in self.category.split(',')]:
-                cond += '\'' + cat + '\','
+                if cat in categories.keys():
+                    for category in categories[cat]:
+                        cond += '\'' + category + '\','
             cond = cond[:-1] + ')'
             conditions.append(cond)
         if self.rev_cnt:
