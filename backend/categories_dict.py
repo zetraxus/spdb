@@ -87,7 +87,7 @@ categories = {
                   "Coffee & Tea",
                   "Desserts",
                   "Themed Cafes", ],
-    "Pub": ["Bars",
+    "Bar": ["Bars",
             "Beer Bar",
             "Beer Gardens",
             "Cocktail Bars",

@@ -33,6 +33,7 @@ class SQLQuery:
                 if cat in categories.keys():
                     for category in categories[cat]:
                         cond += '\'' + category + '\','
+                cond += '\'' + cat + '\','
             cond = cond[:-1] + ')'
             conditions.append(cond)
         if self.rev_cnt:
@@ -41,13 +42,13 @@ class SQLQuery:
             conditions.append("rating >= " + self.min_rating)
         if self.min_price:
             cond = "(price = ' ' or price >= '"
-            for i in range(len(self.min_price)):
+            for i in range(int(self.min_price)):
                 cond += "$"
             cond += '\')'
             conditions.append(cond)
         if self.max_price:
             cond = "(price = ' ' or price <= '"
-            for i in range(len(self.max_price)):
+            for i in range(int(self.max_price)):
                 cond += "$"
             cond += '\')'
             conditions.append(cond)
@@ -59,4 +60,5 @@ class SQLQuery:
                 query += cond + " and "
             query = query[:-5]
         query += ';'
+        print(query)
         return query
